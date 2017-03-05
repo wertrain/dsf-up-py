@@ -13,7 +13,6 @@ class PostData(db.Model):
     u"""
         投稿データモデル
     """
-    pid = db.IntegerProperty()
     comment = db.TextProperty()
     delete_password = db.StringProperty()
     exhibit_flag = db.BooleanProperty()
@@ -21,17 +20,24 @@ class PostData(db.Model):
     sub_image_1 = db.BlobProperty()
     sub_image_2 = db.BlobProperty()
 
-def get_postdata_from_id(pid):
+def get_postdata_from_id(id):
     u"""
         投稿データを取得
     """
-    return db.Query(PostData).filter('pid =', pid).get()
+    return PostData.get_by_id(id)
 
-def update_postdata(postdata, data):
-    postdata = get_postdata_from_id(data[pid])
-    if postdata is None:
-        postdata = PostData()
-    postdata.pid = data[pid]
+def create_postdata(postdata, data):
+    u"""
+        投稿データを更新
+    """
+    postdata = PostData()
+    postdata.comment = data['comment']
+    postdata.delete_password = data['delete_password']
+    postdata.exhibit_flag = data['exhibit_flag']
+    postdata.main_image = data['main_image']
+    postdata.sub_image_1 = data['sub_image_1']
+    postdata.sub_image_2 = data['sub_image_2']
+    postdata.put()
     return postdata
 
 def get_postdata():
