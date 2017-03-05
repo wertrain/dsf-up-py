@@ -3,6 +3,7 @@ import logging
 
 # [START imports]
 from flask import Flask, render_template, request
+from xml.sax.saxutils import escape
 # [END imports]
 
 app = Flask(__name__)
@@ -19,25 +20,30 @@ def form():
     return render_template('form.html')
 # [END form]
 
-
 # [START submitted]
 @app.route('/submitted', methods=['POST'])
 def submitted_form():
-    name = request.form['name']
-    email = request.form['email']
-    site = request.form['site_url']
-    comments = request.form['comments']
-
+    comment = escape(request.form['comment'])
+    main = request.form['mainImageHidden']
+    sub1 = request.form['subImage1Hidden']
+    sub2 = request.form['subImage2Hidden']
+    delpass = request.form['inputPassword']
+    exhibit = request.form['exhibit']
+    postdata = {
+        'comment': comment,
+        'delete_password': delpass,
+        'exhibit_flag': exhibit,
+        'main_image': main,
+        'sub_image_1': sub1,
+        'sub_image_2': sub2
+    }
     # [END submitted]
     # [START render_template]
     return render_template(
         'submitted_form.html',
-        name=name,
-        email=email,
-        site=site,
-        comments=comments)
+        name='hello',
+        comment=comment)
     # [END render_template]
-
 
 @app.errorhandler(500)
 def server_error(e):
