@@ -1,3 +1,9 @@
+# coding:utf-8
+u"""
+    main
+    __author__ = 'wertrain'
+"""
+
 # [START app]
 import logging
 
