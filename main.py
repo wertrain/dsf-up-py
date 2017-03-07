@@ -1,6 +1,6 @@
 # coding:utf-8
 u"""
-    main
+    main 処理
     __author__ = 'wertrain'
 """
 
@@ -10,6 +10,7 @@ import logging
 # [START imports]
 from flask import Flask, render_template, request
 from xml.sax.saxutils import escape
+from my.db import datastore
 # [END imports]
 
 app = Flask(__name__)
@@ -43,6 +44,7 @@ def submitted_form():
         'sub_image_1': sub1,
         'sub_image_2': sub2
     }
+    datastore.create_postdata(postdata)
     # [END submitted]
     # [START render_template]
     return render_template(
