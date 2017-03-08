@@ -21,11 +21,11 @@ class PostData(db.Model):
     sub_image_1 = db.BlobProperty()
     sub_image_2 = db.BlobProperty()
 
-def get_postdata_from_id(id):
+def get_postdata_from_id(pid):
     u"""
         投稿データを取得
     """
-    return PostData.get_by_id(id)
+    return PostData.get_by_id(pid)
 
 def create_postdata(postdata, data):
     u"""
