@@ -13,6 +13,7 @@ class PostData(db.Model):
     u"""
         投稿データモデル
     """
+    name = db.StringProperty()
     comment = db.TextProperty()
     delete_password = db.StringProperty()
     exhibit_flag = db.BooleanProperty()
@@ -31,6 +32,7 @@ def create_postdata(postdata, data):
         投稿データを更新
     """
     postdata = PostData()
+    postdata.name = data['name']
     postdata.comment = data['comment']
     postdata.delete_password = data['delete_password']
     postdata.exhibit_flag = data['exhibit_flag']
