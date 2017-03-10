@@ -24,12 +24,18 @@ def home():
 # [START form]
 @app.route('/form')
 def form():
+    u"""
+        
+    """
     return render_template('form.html')
 # [END form]
 
 # [START submitted]
 @app.route('/submitted', methods=['POST'])
 def submitted_form():
+    u"""
+        
+    """
     comment = escape(request.form['comment'])
     main = request.form['mainImageHidden']
     sub1 = request.form['subImage1Hidden']
@@ -55,6 +61,9 @@ def submitted_form():
 
 @app.errorhandler(500)
 def server_error(e):
+    u"""
+        
+    """
     # Log the error and stacktrace.
     logging.exception('An error occurred during a request.')
     return 'An internal error occurred.', 500
