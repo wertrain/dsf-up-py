@@ -3,7 +3,6 @@ u"""
     main 処理
     __author__ = 'wertrain'
 """
-
 # [START app]
 import logging
 
@@ -18,6 +17,7 @@ app = Flask(__name__)
 # [START home]
 @app.route('/')
 def home():
+
     return render_template('home.html')
 # [END home]
 
@@ -25,7 +25,7 @@ def home():
 @app.route('/form')
 def form():
     u"""
-        
+        画像アップロード画面
     """
     return render_template('form.html')
 # [END form]
@@ -34,7 +34,7 @@ def form():
 @app.route('/submitted', methods=['POST'])
 def submitted_form():
     u"""
-        
+        画像アップロード後画面
     """
     comment = escape(request.form['comment'])
     main = request.form['mainImageHidden']
