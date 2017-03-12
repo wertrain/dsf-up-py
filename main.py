@@ -17,7 +17,9 @@ app = Flask(__name__)
 # [START home]
 @app.route('/')
 def home():
-
+    u"""
+        ホーム画面
+    """
     return render_template('home.html')
 # [END home]
 
@@ -62,7 +64,7 @@ def submitted_form():
 @app.errorhandler(500)
 def server_error(e):
     u"""
-        
+        エラー画面
     """
     # Log the error and stacktrace.
     logging.exception('An error occurred during a request.')
