@@ -3,36 +3,28 @@ u"""
     main 処理
     __author__ = 'wertrain'
 """
-# [START app]
 import logging
 
-# [START imports]
 from flask import Flask, render_template, request
 from xml.sax.saxutils import escape
 from my.db import datastore
-# [END imports]
 
 app = Flask(__name__)
 
-# [START home]
 @app.route('/')
 def home():
     u"""
         ホーム画面
     """
     return render_template('home.html')
-# [END home]
 
-# [START form]
 @app.route('/form')
 def form():
     u"""
         画像アップロード画面
     """
     return render_template('form.html')
-# [END form]
 
-# [START submitted]
 @app.route('/submitted', methods=['POST'])
 def submitted_form():
     u"""
@@ -53,13 +45,10 @@ def submitted_form():
         'sub_image_2': sub2
     }
     datastore.create_postdata(postdata)
-    # [END submitted]
-    # [START render_template]
     return render_template(
         'submitted_form.html',
         name='hello',
         comment=comment)
-    # [END render_template]
 
 @app.errorhandler(500)
 def server_error(e):
@@ -69,4 +58,3 @@ def server_error(e):
     # Log the error and stacktrace.
     logging.exception('An error occurred during a request.')
     return 'An internal error occurred.', 500
-# [END app]
