@@ -51,10 +51,11 @@ def submitted_form():
         comment=comment)
 
 @app.errorhandler(500)
-def server_error(e):
+def server_error(error):
     u"""
         エラー画面
     """
     # Log the error and stacktrace.
     logging.exception('An error occurred during a request.')
+    logging.exception(error.msg)
     return 'An internal error occurred.', 500
