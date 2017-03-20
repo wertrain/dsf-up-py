@@ -46,8 +46,8 @@
                   <legend>Upload New Image</legend>
 
                     <div class="form-group">
-                      <label for="inputEmail" class="col-lg-2 control-label">Image</label>
-                      <input name="mainImageHidden" type="file" style="display:none">
+                      <label for="selectMainImage" class="col-lg-2 control-label">Image</label>
+                      <input id="mainImageHidden" type="file" style="display:none">
                       <div class="col-lg-10">
                         <div class="input-group">
                           <input type="text" class="form-control" id="mainImage" placeholder="Image">
@@ -59,8 +59,8 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="inputEmail" class="col-lg-2 control-label">SubImage1</label>
-                      <input name="subImage1Hidden" type="file" style="display:none">
+                      <label for="selectSubImage1" class="col-lg-2 control-label">SubImage1</label>
+                      <input id="subImage1Hidden" type="file" style="display:none">
                       <div class="col-lg-10">
                         <div class="input-group">
                           <input type="text" class="form-control" id="subImage1" placeholder="SubImage1（Optional）">
@@ -72,8 +72,8 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="inputEmail" class="col-lg-2 control-label">SubImage2</label>
-                      <input name="subImage2Hidden" type="file" style="display:none">
+                      <label for="selectSubImage2" class="col-lg-2 control-label">SubImage2</label>
+                      <input id="subImage2Hidden" type="file" style="display:none">
                       <div class="col-lg-10">
                         <div class="input-group">
                           <input type="text" class="form-control" id="subImage2" placeholder="SubImage2（Optional）">
@@ -124,6 +124,7 @@
     <script src="/static/vendor/js/bootstrap.min.js"></script>
     <script>
       $('input[id=mainImageHidden]').change(function() {
+        alert("test");
         $('#mainImage').val($(this).val());
       });
       $('input[id=subImage1Hidden]').change(function() {
