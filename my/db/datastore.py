@@ -27,7 +27,7 @@ def get_postdata_from_id(pid):
     """
     return PostData.get_by_id(pid)
 
-def create_postdata(postdata, data):
+def create_postdata(data):
     u"""
         投稿データを更新
     """
