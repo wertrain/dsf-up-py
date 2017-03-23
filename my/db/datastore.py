@@ -42,6 +42,16 @@ def create_postdata(data):
     postdata.put()
     return postdata
 
+def delete_postdata(pid):
+    u"""
+        投稿データを削除
+    """
+    postdata = get_postdata_from_id(pid)
+    if postdata is not None:
+        postdata.delete()
+        return True
+    return False
+
 def get_postdata():
     u"""
         投稿データを取得
