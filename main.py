@@ -4,6 +4,7 @@ u"""
     __author__ = 'wertrain'
 """
 import logging
+from google.appengine.ext import blobstore
 
 from flask import Flask, render_template, request
 from xml.sax.saxutils import escape
@@ -23,7 +24,8 @@ def form():
     u"""
         画像アップロード画面
     """
-    return render_template('form.html')
+    upload_url = blobstore.create_upload_url('/submitted')
+    return render_template('form.html', upload_url=upload_url)
 
 @app.route('/submitted', methods=['POST'])
 def submitted_form():
@@ -31,20 +33,22 @@ def submitted_form():
         画像アップロード後画面
     """
     comment = escape(request.form['comment'])
-    main = request.form['mainImageHidden']
-    sub1 = request.form['subImage1Hidden']
-    sub2 = request.form['subImage2Hidden']
+    
+    logging.exception(request.files)
+    # request.form['mainImageHidden']
+    # sub1 = request.form['subImage1Hidden']
+    # sub2 = request.form['subImage2Hidden']
     delpass = request.form['inputPassword']
     exhibit = request.form['exhibit']
-    postdata = {
-        'comment': comment,
-        'delete_password': delpass,
-        'exhibit_flag': exhibit,
-        'main_image': main,
-        'sub_image_1': sub1,
-        'sub_image_2': sub2
-    }
-    datastore.create_postdata(postdata)
+    # postdata = {
+    #     'comment': comment,
+    #     'delete_password': delpass,
+    #     'exhibit_flag': exhibit,
+    #     'main_image': main,
+    #     'sub_image_1': sub1,
+    #     'sub_image_2': sub2
+    # }
+    # datastore.create_postdata(postdata)
     return render_template(
         'submitted_form.html',
         name='hello',
