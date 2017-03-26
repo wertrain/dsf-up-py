@@ -29,7 +29,7 @@ def get_postdata_from_id(pid):
 
 def create_postdata(data):
     u"""
-        投稿データを更新
+        投稿データを作成
     """
     postdata = PostData()
     postdata.name = data['author_name']
@@ -37,8 +37,8 @@ def create_postdata(data):
     postdata.delete_password = data['delete_password']
     postdata.exhibit_flag = data['exhibit_flag']
     postdata.main_image = db.Blob(data['main_image'])
-    #postdata.sub_image_1 = data['sub_image_1']
-    #postdata.sub_image_2 = data['sub_image_2']
+    postdata.sub_image_1 = db.Blob(data['sub_image_1'])
+    postdata.sub_image_2 = db.Blob(data['sub_image_2'])
     postdata.put()
     return postdata
 
