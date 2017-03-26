@@ -33,25 +33,30 @@ def submitted_form():
         画像アップロード後画面
     """
     comment = escape(request.form['comment'])
-    
-    logging.exception(request.files)
-    # request.form['mainImageHidden']
-    # sub1 = request.form['subImage1Hidden']
-    # sub2 = request.form['subImage2Hidden']
+    main_image_file = request.files.get('mainImageHidden')
+    sub_image1_file = request.files.get('subImage1Hidden')
+    sub_image2_file = request.files.get('subImage2Hidden')
+    author_name = request.form['authorName']
     delpass = request.form['inputPassword']
     exhibit = request.form['exhibit']
-    # postdata = {
-    #     'comment': comment,
-    #     'delete_password': delpass,
-    #     'exhibit_flag': exhibit,
-    #     'main_image': main,
-    #     'sub_image_1': sub1,
-    #     'sub_image_2': sub2
-    # }
-    # datastore.create_postdata(postdata)
+
+    main_image_data = main_image_file.read() if main_image_file is not None else None
+    sub_image1_data = sub_image1_file.read() if sub_image1_file is not None else None
+    sub_image2_data = sub_image2_file.read() if sub_image2_file is not None else None
+
+    postdata = {
+        'comment': comment,
+        'delete_password': delpass,
+        'exhibit_flag': exhibit == 'on',
+        'author_name': author_name,
+        'main_image': main_image_data,
+        'sub_image_1': sub_image1_data,
+        'sub_image_2': sub_image2_data
+    }
+    datastore.create_postdata(postdata)
     return render_template(
         'submitted_form.html',
-        name='hello',
+        name=exhibit,
         comment=comment)
 
 @app.errorhandler(500)
@@ -61,5 +66,4 @@ def server_error(error):
     """
     # Log the error and stacktrace.
     logging.exception('An error occurred during a request.')
-    logging.exception(error.msg)
     return 'An internal error occurred.', 500

@@ -32,13 +32,13 @@ def create_postdata(data):
         投稿データを更新
     """
     postdata = PostData()
-    postdata.name = data['name']
+    postdata.name = data['author_name']
     postdata.comment = data['comment']
     postdata.delete_password = data['delete_password']
     postdata.exhibit_flag = data['exhibit_flag']
-    postdata.main_image = data['main_image']
-    postdata.sub_image_1 = data['sub_image_1']
-    postdata.sub_image_2 = data['sub_image_2']
+    postdata.main_image = db.Blob(data['main_image'])
+    #postdata.sub_image_1 = data['sub_image_1']
+    #postdata.sub_image_2 = data['sub_image_2']
     postdata.put()
     return postdata
 
