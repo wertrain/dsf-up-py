@@ -36,9 +36,9 @@ def create_postdata(data):
     postdata.comment = data['comment']
     postdata.delete_password = data['delete_password']
     postdata.exhibit_flag = data['exhibit_flag']
-    postdata.main_image = db.Blob(data['main_image'])
-    postdata.sub_image_1 = db.Blob(data['sub_image_1'])
-    postdata.sub_image_2 = db.Blob(data['sub_image_2'])
+    postdata.main_image = db.Blob(data['main_image']) if data['main_image'] is not None else None
+    postdata.sub_image_1 = db.Blob(data['sub_image_1']) if data['sub_image_1'] is not None else None
+    postdata.sub_image_2 = db.Blob(data['sub_image_2']) if data['sub_image_2'] is not None else None
     postdata.put()
     return postdata
 
