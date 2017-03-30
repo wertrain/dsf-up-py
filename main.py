@@ -56,7 +56,7 @@ def submitted_form():
     datastore.create_postdata(postdata)
     return render_template(
         'submitted_form.html',
-        name=exhibit,
+        name=author_name,
         comment=comment)
 
 @app.errorhandler(500)
